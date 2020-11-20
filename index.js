@@ -96,7 +96,7 @@ class DynamoDB {
 
   async scan ({ projection } = {}) {
     let list = [];
-    let params = {
+    const params = {
       TableName: this.table
     };
     if (projection) params.ProjectionExpression = projection;
@@ -109,11 +109,11 @@ class DynamoDB {
   }
 
   async update (key, data) {
-    let set = [];
-    let attrs = {};
-    let ean = {};
+    const set = [];
+    const attrs = {};
+    const ean = {};
     for (const name in data) {
-      let value = data[name];
+      const value = data[name];
       if (value === undefined) continue;
       attrs[`:${name}`] = value;
       ean[`#${name}`] = name;
@@ -138,9 +138,9 @@ class DynamoDB {
   }
 
   async patch (key, data) {
-    let set = [];
-    let attrs = {};
-    let names = {};
+    const set = [];
+    const attrs = {};
+    const names = {};
     for (const name in data) {
       const v = name.split('.');
       attrs[`:variable_${set.length}`] = data[name];
