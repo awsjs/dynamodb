@@ -3,9 +3,9 @@ const AWS = require('aws-sdk');
 const { assert } = require('chai');
 
 class DynamoDB {
-  constructor ({ table, env = process.env.NODE_ENV, region = process.env.REGION }) {
-    this.table = `lo-${table}-${env}`;
-    this.ddb = new AWS.DynamoDB.DocumentClient({ region });
+  constructor ({ table }) {
+    this.table = table;
+    this.ddb = new AWS.DynamoDB.DocumentClient();
   }
 
   async get (key) {
